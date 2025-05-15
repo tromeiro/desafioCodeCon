@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id      String @id @map("_id") @db.ObjectId
+
+  name    String
+  age     Int
+  score   Int
+  active  Boolean
+  country String
+  team    Team?
+  logs    Log[]
+
+  @@map("users")
+}
+
+model Team{
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name      String 
+  leader    Boolean
+  
+  userId    String @db.ObjectId @unique @map("user_id")
+  user      Users @relation(fields: [userId], references: [id] )
+
+  projects  Projects[]
+
+  @@map("team")
+}
+
+model Projects { 
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name      String
+  completed Boolean
+
+  projectId String @db.ObjectId @unique @map("project_id")
+  team      Team @relation(fields: [ projectId ], references: [id])
+
+  @@map("project")
+}
+
+model Log {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+
+  date      DateTime @default(now())
+  action    String
+
+  userId    String @db.ObjectId @unique @map("user_id")
+  user      Users @relation(fields: [userId], references: [id])
+
+  @@map("log")
+}
