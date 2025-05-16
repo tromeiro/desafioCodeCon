@@ -20,6 +20,7 @@
   "homepage": "https://github.com/tromeiro/desafioCodeCon#readme",
   "dependencies": {
     "@prisma/client": "^6.8.1",
+    "@types/multer": "^1.4.12",
     "express": "^5.1.0"
   },
   "devDependencies": {
