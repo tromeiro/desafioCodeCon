@@ -1,19 +1,24 @@
 import { Router } from "express";
+import multer from "multer";
 
-import userController from "../modules/usersController";
+
+import createUserController from "../modules/users/useCases/createUser/createUsersController";
 import superusersController from "../modules/superUsersController";
 import topcountriesController from "../modules/topCountriesController";
-import teamsController from "../modules/teamInsightsController";
+import teamsController from "../modules/teams/useCases/createTeam/createTeamController";
 import activeuserController from "../modules/activeUsersController";
 import evaluationController from "../modules/evaluationController";
 
-const router = Router();
+const appRouter = Router();
 
-router.post("/users", userController);
-router.get("/superusers", superusersController);
-router.get("/top-countries", topcountriesController);
-router.get("./team-insights", teamsController)
-router.get("./active-users-per-day", activeuserController);
-router.get("./evaluation", evaluationController);
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-export default router;
+appRouter.post("/users", upload.single('file'), createUserController);
+//appRouter.get("/superusers", superusersController);
+//appRouter.get("/top-countries", topcountriesController);
+//appRouter.get("./team-insights", teamsController)
+//appRouter.get("./active-users-per-day", activeuserController);
+//appRouter.get("./evaluation", evaluationController);
+
+export default appRouter;

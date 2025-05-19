@@ -1,20 +1,11 @@
 import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
 
-
-const countriesRouter = (req, res) => {
+const countriesRouter = (req: Request, res: Response) => {
   const prisma = new PrismaClient();
-  
+ 
   try{
-    const result = prisma.users.aggregate({
-      _count: {
-        users: {
-          country: true
-        }
-      },
-      limit: 5
-    })
-
-    res.status(200).json({ result });
+   
 
   }
   catch(err){

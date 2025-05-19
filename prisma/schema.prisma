@@ -8,59 +8,59 @@ generator client {
   provider = "prisma-client-js"
 }
 
-datasource db { 
+datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Users {
-  id      String @id @map("_id") @db.ObjectId
+  id String @id @map("_id")
 
   name    String
   age     Int
   score   Int
   active  Boolean
   country String
-  team    Team?
-  logs    Log[]
+  leader  Boolean
+
+  teamId String @map("team_id")
+  team   Team?  @relation(fields: [teamId], references: [name])
+
+  logs Log[]
 
   @@map("users")
 }
 
-model Team{
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+model Team {
+  name String @id @map("_id")
 
-  name      String 
-  leader    Boolean
-  
-  userId    String @db.ObjectId @unique @map("user_id")
-  user      Users @relation(fields: [userId], references: [id] )
+  users Users[]
 
-  projects  Projects[]
+  projects Projects[]
 
   @@map("team")
 }
 
-model Projects { 
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+model Projects {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name      String
   completed Boolean
 
-  projectId String @db.ObjectId @unique @map("project_id")
-  team      Team @relation(fields: [ projectId ], references: [id])
+  projectId String @map("project_id")
+  team      Team   @relation(fields: [projectId], references: [name])
 
   @@map("project")
 }
 
 model Log {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  date      DateTime @default(now())
-  action    String
+  date   DateTime @default(now())
+  action String
 
-  userId    String @db.ObjectId @unique @map("user_id")
-  user      Users @relation(fields: [userId], references: [id])
+  userId String @map("log_id")
+  user   Users  @relation(fields: [userId], references: [id])
 
   @@map("log")
 }

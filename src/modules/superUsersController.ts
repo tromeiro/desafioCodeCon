@@ -1,16 +1,13 @@
 import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
 
-const superusersRouter = (req, res) => {
+const superusersRouter = (req: Request, res: Response) => {
   const prisma = new PrismaClient(); 
   
   try{
     const result = prisma.users.count({
-      where: {
-        users: {
-          score: { gte: 900 },
-          active: true
-        }
-      }
+      
+      
     })
       
     res.status(200).json({ result });
