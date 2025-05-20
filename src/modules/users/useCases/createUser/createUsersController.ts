@@ -13,8 +13,9 @@ const userRouter = async (req: Request, res: Response) => {
     };
 
     try{
-      const file = Buffer.toString();
-      const users: IUser[] = JSON.parse(file);
+      const file = req.file.buffer;
+      const fileUsers = file.toString();
+      const users: IUser[] = JSON.parse(fileUsers);
       
       const useCase = container.resolve(CreateUsersUseCase);
       await useCase.execute(users);

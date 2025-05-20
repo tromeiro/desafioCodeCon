@@ -22,7 +22,7 @@ class CreateUsersUseCase {
     this.teamRepository.create(teams);
     this.projectRepository.create(teams); 
     this.userRepository.create(users);
-    this.logRepository.create(users);
+    const message = this.logRepository.create(users);
   };
 
 };

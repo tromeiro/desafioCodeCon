@@ -56,7 +56,7 @@ model Projects {
 model Log {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  date   DateTime @default(now())
+  date   String
   action String
 
   userId String @map("log_id")

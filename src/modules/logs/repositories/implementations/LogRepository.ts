@@ -11,12 +11,12 @@ class LogRepository implements ILogRepository{
 
   async create(users: IUser[]): Promise<number>{
     const logsIn: Prisma.LogCreateManyInput[] = [];
-
+    //const logsIn = [];
     for(const user of users){
       const mappedLogs = user.logs.map( log => ({
         date: log.date,
         action: log.action,
-        userId: log.userId,
+        userId: user.id,
       }));
 
       logsIn.push(...mappedLogs);
