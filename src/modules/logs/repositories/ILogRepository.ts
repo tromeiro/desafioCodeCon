@@ -1,8 +1,6 @@
-import ILog from "../../../types/ILog";
-
+import IUser from "../../../types/IUser";
 interface ILogRepository{
-  create: (log: ILog[]) => Promise<number>;
-
+  create: (users: IUser[]) => Promise<number>;
 };
 
 export default ILogRepository;

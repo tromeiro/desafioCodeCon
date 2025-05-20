@@ -1,8 +1,6 @@
-import IProject from "../../../types/IProject";
-
+import ITeam from "../../../types/ITeam";
 interface IProjectRepository{
-  create: (project: IProject[]) => Promise<number>;
-
+  create: (project: ITeam[]) => Promise<number>;
 };
 
 export default IProjectRepository;

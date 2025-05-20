@@ -47,8 +47,8 @@ model Projects {
   name      String
   completed Boolean
 
-  projectId String @map("project_id")
-  team      Team   @relation(fields: [projectId], references: [name])
+  teamId String @map("project_id")
+  team      Team   @relation(fields: [teamId], references: [name])
 
   @@map("project")
 }

@@ -1,17 +1,23 @@
 import ITeam from "../../../../types/ITeam";
+import prisma from "../../../../service/prisma-client";
 import ITeamRepository from "../ITeamRepository";
 
-import { PrismaClient } from "@prisma/client";
 import { inject, injectable } from "tsyringe";
+import { PrismaClient } from "@prisma/client";
 import { PRISMA_CLIENT } from "../../../../service/prisma-client/symbols";
-
 
 @injectable()
 class TeamRepository implements ITeamRepository { 
-  constructor(@inject(PRISMA_CLIENT) private readonly pisma: PrismaClient) {}
+  constructor(@inject(PRISMA_CLIENT) private readonly pisma: PrismaClient) {};
 
-  async create(team: ITeam[]): Promise<number> {
-    
+  async create(teams: ITeam[]): Promise<number> {
+    for(const team of teams) {
+      prisma.team.upsert({
+        where: { name: team.name },
+        update: { },
+        create: { name: team.name },
+      });
+    };
     return 0;
   };
 };

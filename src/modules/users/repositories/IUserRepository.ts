@@ -1,9 +1,6 @@
 import IUser from "../../../types/IUser";
-
-//para assinaturas de classe
 interface IUserRepository{
-  findById(id: any): unknown;
-
+  //para assinaturas de classe
   create: (user: IUser[]) => Promise<number>;
 };
 

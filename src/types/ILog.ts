@@ -1,6 +1,6 @@
 type ILog = {
     id: string;
-    date: string;
+    date: Date;
     action: string;
     userId: string;
 };

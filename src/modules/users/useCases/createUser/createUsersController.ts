@@ -1,11 +1,11 @@
 
+import { container } from "tsyringe";
 import { Request, Response } from "express";
 
 import IUser from "../../../../types/IUser";
-import { container } from "tsyringe";
 import CreateUsersUseCase from "./createUsersUseCase";
 
-const userRouter = (req: Request, res: Response) => {
+const userRouter = async (req: Request, res: Response) => {
 
     if(!req.file){
         res.status(400).json({ error: "Sem arquivo em anexo" });
@@ -13,7 +13,7 @@ const userRouter = (req: Request, res: Response) => {
     };
 
     try{
-      const file = buffer.toString();
+      const file = Buffer.toString();
       const users: IUser[] = JSON.parse(file);
       
       const useCase = container.resolve(CreateUsersUseCase);

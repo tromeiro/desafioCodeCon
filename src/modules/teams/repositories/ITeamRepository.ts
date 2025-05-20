@@ -1,8 +1,6 @@
 import ITeam from "../../../types/ITeam";
-
-//interface para declarar assinatura das classes
 interface ITeamRepository{
-  
+  //interface para declarar assinatura das classes
   create: (team: ITeam[]) => Promise<number>;
 };
 
