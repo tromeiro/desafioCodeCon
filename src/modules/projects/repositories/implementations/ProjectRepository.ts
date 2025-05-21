@@ -12,7 +12,7 @@ class ProjectRepository implements IProjectRepository{
   async create(teams: ITeam[]): Promise<number>{
 
     const projects: Prisma.ProjectsCreateManyInput[] = [];
-    
+    //const projects = []
     for(const team of teams){
       const mappedProjects = team.projects.map( project => ({ 
           name: project.name,

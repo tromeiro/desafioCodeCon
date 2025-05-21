@@ -1,4 +1,3 @@
-
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
@@ -24,7 +23,8 @@ const userRouter = async (req: Request, res: Response) => {
 
     }
     catch(err){
-      res.status(500).json({ message: 'Erro ao ler arquivo'});
+      console.error(err);
+      res.status(500).json({ err });
     }
         
 };

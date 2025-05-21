@@ -25,6 +25,11 @@ class LogRepository implements ILogRepository{
     await this.prisma.log.createMany({ data: logsIn })
     return 0;
   };
-}
+
+  async activeUsers(): Promise<number>{
+
+    return 0;
+  };
+};
 
 export default LogRepository;

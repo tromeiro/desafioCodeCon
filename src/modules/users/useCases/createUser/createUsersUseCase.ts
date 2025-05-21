@@ -19,10 +19,10 @@ class CreateUsersUseCase {
   async execute(users: IUser[]){
     const teams = users.map( user => user.team)
 
-    this.teamRepository.create(teams);
-    this.projectRepository.create(teams); 
-    this.userRepository.create(users);
-    const message = this.logRepository.create(users);
+    await this.teamRepository.create(teams);
+    await this.projectRepository.create(teams); 
+    await this.userRepository.create(users);
+    await this.logRepository.create(users);
   };
 
 };

@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -33,6 +34,8 @@ model Users {
 
 model Team {
   name String @id @map("_id")
+
+  updatedAt String
 
   users Users[]
 

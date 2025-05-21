@@ -8,7 +8,6 @@ type IUser = {
     score: number;
     active: boolean;
     country: string;
-    leader: boolean;
     team: ITeam;
     logs: ILog[];
 };
