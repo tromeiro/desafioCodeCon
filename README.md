@@ -1,6 +1,6 @@
 # desafioCodeCon
 JSON de entrada
-{
+```{
   "id": "uuid",
   "name": "string",
   "age": "int",
@@ -13,7 +13,7 @@ JSON de entrada
     "projects": [{ "name": "string", "completed": "bool" }]
   },
   "logs": [{ "date": "YYYY-MM-DD", "action": "login/logout" }]
-}
+}```
 
 
 POST /users
