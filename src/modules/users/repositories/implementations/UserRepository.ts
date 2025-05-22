@@ -1,7 +1,7 @@
 import IUser from "../../../../types/IUser";
 import IUserRepository from "../IUserRepository";
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Users } from "@prisma/client";
 import { inject, injectable } from "tsyringe";
 import { PRISMA_CLIENT } from "../../../../service/prisma-client/symbols";
 
@@ -32,37 +32,17 @@ class UserRepository implements IUserRepository{
    return 0;
   };
 
-  async getUsers(): Promise<IUser[]>{
-    const superUsers: IUser[] = []
-    /*await this.prisma.users.findMany({
-      select: {
-        id: true,
-        name: true,
-        age: true,
-        score: true,
-        active: true,
-        country: true,
-        team: {
-          select: { name: true }
-        },
-        logs: {
-          select: { action: true }
-        }
-      },
+  async getUsers(): Promise<Users[]>{
+    const superUsers: Users[] = await this.prisma.users.findMany({
       where: { 
         score: { gte: 900 },
         active: true
       },
       include: {
-        team: {
-          select: { name: true }
-        },
-        logs: {
-          select: { action: true }
-        }
+        team: true,
+        logs: true
       }
-    });*/
-
+    });
 
     return superUsers;
   };

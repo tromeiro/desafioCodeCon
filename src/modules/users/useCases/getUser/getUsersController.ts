@@ -7,7 +7,7 @@ const superusersRouter = async (req: Request, res: Response) => {
   
   try{
     const useCase = container.resolve(SuperUsersUseCase);
-    const result = useCase.execute();
+    const result = await useCase.execute();
       
     res.status(200).json({ result });
   }

@@ -3,17 +3,14 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   previewFeatures = ["relationJoins"]
 }
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-
 model Users {
   id String @id @map("_id")
 
@@ -31,7 +28,6 @@ model Users {
 
   @@map("users")
 }
-
 model Team {
   name String @id @map("_id")
 
@@ -43,7 +39,6 @@ model Team {
 
   @@map("team")
 }
-
 model Projects {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -55,7 +50,6 @@ model Projects {
 
   @@map("project")
 }
-
 model Log {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 

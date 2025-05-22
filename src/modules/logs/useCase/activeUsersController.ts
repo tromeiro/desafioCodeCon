@@ -6,7 +6,9 @@ import ActiveUsersUseCase from "./activeUsersUseCase";
 const activeUserController = async (req: Request, res: Response) => {
   try{
     const useCase = container.resolve(ActiveUsersUseCase);
-    await useCase.execute();
+    const result = await useCase.execute();
+
+    res.status(200).json({ result });
   }
   catch(err){
     console.error(err);

@@ -10,6 +10,8 @@ class SuperUsersUseCase{
 
   async execute(){
     const superUsers = await this.userRepository.getUsers();
+
+    return superUsers;
   }
 };
 
