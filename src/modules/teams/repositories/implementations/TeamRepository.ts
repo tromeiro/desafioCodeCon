@@ -52,7 +52,6 @@ class TeamRepository implements ITeamRepository {
   };
 
   async getTeamsInsights(): Promise<Record<string, ITeamInsights>>{
-    //const teamsInsights: ITeamInsights[] = [];
     const teamsInsights: Record<string, ITeamInsights> = {}
 
     const teams = await this.prisma.team.findMany();
@@ -65,9 +64,6 @@ class TeamRepository implements ITeamRepository {
       
       teamsInsights[team.name] = {totalMembers, leaders, projects, activeMembers};
     }
-
-    
-
 
     return teamsInsights;
   }
